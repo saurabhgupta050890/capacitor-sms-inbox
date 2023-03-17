@@ -6,7 +6,7 @@ A capacitor plugin to read SMS inbox
 
 ```bash
 npm install capacitor-sms-inbox
-npx cap sync
+npx cap sync android
 ```
 
 ## API
