@@ -4,13 +4,13 @@ export interface PermissionStatus {
 }
 
 export enum MessageType {
-  ALL = '', // 0
-  INBOX = 'inbox', //1
-  SENT = 'sent', // 2
-  DRAFT = 'draft', //3
-  OUTBOX = 'outbox', // 4
-  FAILED = 'failed', //5
-  QUEUED = 'queued', //6
+  ALL = 0,
+  INBOX = 1,
+  SENT = 2,
+  DRAFT = 3,
+  OUTBOX = 4,
+  FAILED = 5,
+  QUEUED = 6,
 }
 
 // https://developer.android.com/reference/android/provider/Telephony.TextBasedSmsColumns
@@ -78,7 +78,7 @@ export interface SMSFilter {
   /**
    * @default MessageType.INBOX
    */
-  box: MessageType;
+  type: MessageType;
   id?: number;
   threadId?: number;
   body?: string;

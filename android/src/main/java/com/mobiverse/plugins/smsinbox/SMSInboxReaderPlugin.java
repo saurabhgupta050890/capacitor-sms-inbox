@@ -70,9 +70,9 @@ public class SMSInboxReaderPlugin extends Plugin {
         if (!isSMSPermissionGranted()) {
             requestSMSPermission(call);
         } else {
-            JSObject filters = call.getObject("filter");
             GetSMSProjectionInput projection = new GetSMSProjectionInput(call.getObject("projection"));
-            ArrayList<SMSObject> smsListObj = implementation.getSMSList(projection);
+            GetSMSFilterInput filter = new GetSMSFilterInput(call.getObject("filter"));
+            ArrayList<SMSObject> smsListObj = implementation.getSMSList(projection, filter);
             JSONArray smsList = new JSONArray(smsListObj);
             JSObject ret = new JSObject();
             ret.put("smsList", smsList);

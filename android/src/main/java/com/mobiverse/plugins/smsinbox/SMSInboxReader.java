@@ -27,11 +27,17 @@ public class SMSInboxReader {
         return smsCount;
     }
 
-    public ArrayList<SMSObject> getSMSList(GetSMSProjectionInput projectionInput) {
+    public ArrayList<SMSObject> getSMSList(GetSMSProjectionInput projectionInput, GetSMSFilterInput filterInput) {
         String[] projection = projectionInput.getProjection();
 
         ContentResolver cr = this.mActivity.getContentResolver();
-        Cursor cursor = cr.query(Telephony.Sms.Inbox.CONTENT_URI, projection, null, null, null);
+        Cursor cursor = cr.query(
+            filterInput.getContentUri(),
+            projection,
+            filterInput.getSelection(),
+            filterInput.getSelectionArgs(),
+            Telephony.Sms.DEFAULT_SORT_ORDER
+        );
 
         ArrayList<SMSObject> smsList = new ArrayList<>();
         if (cursor != null && cursor.getCount() > 0) {
@@ -39,7 +45,9 @@ public class SMSInboxReader {
             while (cursor.moveToNext()) {
                 smsObj = new SMSObject();
                 smsObj.fillSMSObjectFromCursor(cursor);
-                smsList.add(smsObj);
+                if (filterInput.isAddressMatch(smsObj) && filterInput.isBodyMatch(smsObj)) {
+                    smsList.add(smsObj);
+                }
             }
             cursor.close();
             return smsList;

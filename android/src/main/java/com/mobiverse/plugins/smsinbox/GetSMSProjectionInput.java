@@ -19,16 +19,16 @@ public class GetSMSProjectionInput {
     private final boolean spamReport;
 
     GetSMSProjectionInput(JSObject fromJSONObject) {
-        this.id = fromJSONObject.optBoolean("id");
-        this.threadId = fromJSONObject.optBoolean("threadId");
-        this.address = fromJSONObject.optBoolean("address");
-        this.creator = fromJSONObject.optBoolean("creator");
-        this.person = fromJSONObject.optBoolean("person");
-        this.date = fromJSONObject.optBoolean("date");
-        this.dateSent = fromJSONObject.optBoolean("dateSent");
-        this.subject = fromJSONObject.optBoolean("subject");
-        this.body = fromJSONObject.optBoolean("body");
-        this.spamReport = fromJSONObject.optBoolean("spamReport");
+        this.id = fromJSONObject.optBoolean("id", true);
+        this.threadId = fromJSONObject.optBoolean("threadId", true);
+        this.address = fromJSONObject.optBoolean("address", true);
+        this.creator = fromJSONObject.optBoolean("creator", false);
+        this.person = fromJSONObject.optBoolean("person", false);
+        this.date = fromJSONObject.optBoolean("date", true);
+        this.dateSent = fromJSONObject.optBoolean("dateSent", false);
+        this.subject = fromJSONObject.optBoolean("subject", true);
+        this.body = fromJSONObject.optBoolean("body", true);
+        this.spamReport = fromJSONObject.optBoolean("spamReport", false);
     }
 
     public String[] getProjection() {

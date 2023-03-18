@@ -22,6 +22,50 @@ public class SMSObject {
     private String body;
     private String spamReport;
 
+    public String getSmsId() {
+        return smsId;
+    }
+
+    public String getThreadId() {
+        return threadId;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public String getPerson() {
+        return person;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getDateSent() {
+        return dateSent;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public String getSpamReport() {
+        return spamReport;
+    }
+
     private String getStringByColumnName(Cursor cursor, String columnName) {
         int index = cursor.getColumnIndex(columnName);
         if (index >= 0) {
