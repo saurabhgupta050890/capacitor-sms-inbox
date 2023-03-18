@@ -51,14 +51,14 @@ requestPermissions() => Promise<PermissionStatus>
 ### getCount(...)
 
 ```typescript
-getCount(filter: SMSFilter) => Promise<number>
+getCount(filter?: SMSFilter | undefined) => Promise<{ count: number; }>
 ```
 
 | Param        | Type                                            |
 | ------------ | ----------------------------------------------- |
 | **`filter`** | <code><a href="#smsfilter">SMSFilter</a></code> |
 
-**Returns:** <code>Promise&lt;number&gt;</code>
+**Returns:** <code>Promise&lt;{ count: number; }&gt;</code>
 
 --------------------
 
@@ -66,7 +66,7 @@ getCount(filter: SMSFilter) => Promise<number>
 ### getSMSList(...)
 
 ```typescript
-getSMSList(projection: Projection, filter: SMSFilter) => Promise<SMSObject[]>
+getSMSList(projection?: Projection | undefined, filter?: SMSFilter | undefined) => Promise<{ smsList: SMSObject[]; }>
 ```
 
 | Param            | Type                                              |
@@ -74,7 +74,7 @@ getSMSList(projection: Projection, filter: SMSFilter) => Promise<SMSObject[]>
 | **`projection`** | <code><a href="#projection">Projection</a></code> |
 | **`filter`**     | <code><a href="#smsfilter">SMSFilter</a></code>   |
 
-**Returns:** <code>Promise&lt;SMSObject[]&gt;</code>
+**Returns:** <code>Promise&lt;{ smsList: SMSObject[]; }&gt;</code>
 
 --------------------
 

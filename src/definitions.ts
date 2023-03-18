@@ -93,6 +93,6 @@ export interface SMSFilter {
 export interface SMSInboxReaderPlugin {
   checkPermissions(): Promise<PermissionStatus>;
   requestPermissions(): Promise<PermissionStatus>;
-  getCount(filter: SMSFilter): Promise<number>;
-  getSMSList(projection: Projection, filter: SMSFilter): Promise<SMSObject[]>;
+  getCount(filter?: SMSFilter): Promise<{count: number}>;
+  getSMSList(projection?: Projection, filter?: SMSFilter): Promise<{smsList: SMSObject[]}>;
 }
