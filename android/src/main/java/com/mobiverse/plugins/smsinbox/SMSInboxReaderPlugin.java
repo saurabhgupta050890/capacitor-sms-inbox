@@ -1,7 +1,6 @@
 package com.mobiverse.plugins.smsinbox;
 
 import android.Manifest;
-import com.getcapacitor.JSArray;
 import com.getcapacitor.JSObject;
 import com.getcapacitor.PermissionState;
 import com.getcapacitor.Plugin;
@@ -38,7 +37,7 @@ public class SMSInboxReaderPlugin extends Plugin {
     @PermissionCallback
     private void permissionCallback(PluginCall call) {
         if (!isSMSPermissionGranted()) {
-            call.reject("Permission is required to access contacts.");
+            call.reject("Permission is required to access SMS.");
             return;
         }
 

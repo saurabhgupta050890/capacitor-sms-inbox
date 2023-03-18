@@ -6,10 +6,10 @@ export class SMSInboxReaderWeb
   extends WebPlugin
   implements SMSInboxReaderPlugin
 {
-  getCount(filters: SMSFilter): Promise<number> {
+  getCount(_filters: SMSFilter): Promise<number> {
     throw new Error('Method not implemented.');
   }
-  getSMSList(projections: Projection, filters: SMSFilter): Promise<SMSObject[]> {
+  getSMSList(_projections: Projection, _filters: SMSFilter): Promise<SMSObject[]> {
     throw new Error('Method not implemented.');
   }
   checkPermissions(): Promise<PermissionStatus> {
