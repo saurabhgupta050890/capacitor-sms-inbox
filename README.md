@@ -93,7 +93,7 @@ getSMSList(projection: Projection, filter: SMSFilter) => Promise<SMSObject[]>
 
 | Prop               | Type                                                | Default                        |
 | ------------------ | --------------------------------------------------- | ------------------------------ |
-| **`box`**          | <code><a href="#messagetype">MessageType</a></code> | <code>MessageType.INBOX</code> |
+| **`type`**         | <code><a href="#messagetype">MessageType</a></code> | <code>MessageType.INBOX</code> |
 | **`id`**           | <code>number</code>                                 |                                |
 | **`threadId`**     | <code>number</code>                                 |                                |
 | **`body`**         | <code>string</code>                                 |                                |
@@ -153,14 +153,14 @@ getSMSList(projection: Projection, filter: SMSFilter) => Promise<SMSObject[]>
 
 #### MessageType
 
-| Members      | Value                 |
-| ------------ | --------------------- |
-| **`ALL`**    | <code>''</code>       |
-| **`INBOX`**  | <code>'inbox'</code>  |
-| **`SENT`**   | <code>'sent'</code>   |
-| **`DRAFT`**  | <code>'draft'</code>  |
-| **`OUTBOX`** | <code>'outbox'</code> |
-| **`FAILED`** | <code>'failed'</code> |
-| **`QUEUED`** | <code>'queued'</code> |
+| Members      | Value          |
+| ------------ | -------------- |
+| **`ALL`**    | <code>0</code> |
+| **`INBOX`**  | <code>1</code> |
+| **`SENT`**   | <code>2</code> |
+| **`DRAFT`**  | <code>3</code> |
+| **`OUTBOX`** | <code>4</code> |
+| **`FAILED`** | <code>5</code> |
+| **`QUEUED`** | <code>6</code> |
 
 </docgen-api>
