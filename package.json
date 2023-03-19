@@ -1,6 +1,6 @@
 {
   "name": "capacitor-sms-inbox",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "A capacitor plugin to read SMS inbox",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
