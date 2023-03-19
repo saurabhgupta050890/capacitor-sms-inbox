@@ -20,7 +20,6 @@ public class SMSObject {
     private String dateSent;
     private String subject;
     private String body;
-    private String spamReport;
 
     public String getSmsId() {
         return smsId;
@@ -62,9 +61,6 @@ public class SMSObject {
         return body;
     }
 
-    public String getSpamReport() {
-        return spamReport;
-    }
 
     private String getStringByColumnName(Cursor cursor, String columnName) {
         int index = cursor.getColumnIndex(columnName);
@@ -101,7 +97,6 @@ public class SMSObject {
         this.dateSent = getStringByColumnName(cursor, TextBasedSmsColumns.DATE_SENT);
         this.subject = getStringByColumnName(cursor, TextBasedSmsColumns.SUBJECT);
         this.body = getStringByColumnName(cursor, TextBasedSmsColumns.BODY);
-        this.spamReport = getStringByColumnName(cursor, "spam_report");
     }
 
     public JSObject getJSONObject() {
@@ -116,7 +111,22 @@ public class SMSObject {
         smsObject.put("dateSent", parseStrToLongSafe(this.dateSent));
         smsObject.put("subject", this.subject);
         smsObject.put("body", this.body);
-        smsObject.put("spamReport", parseStrToIntSafe(this.spamReport));
         return smsObject;
+    }
+
+    @Override
+    public String toString() {
+        return "SMSObject{" +
+                "smsId='" + smsId + '\'' +
+                ", threadId='" + threadId + '\'' +
+                ", type='" + type + '\'' +
+                ", address='" + address + '\'' +
+                ", creator='" + creator + '\'' +
+                ", person='" + person + '\'' +
+                ", date='" + date + '\'' +
+                ", dateSent='" + dateSent + '\'' +
+                ", subject='" + subject + '\'' +
+                ", body='" + body + '\'' +
+                '}';
     }
 }

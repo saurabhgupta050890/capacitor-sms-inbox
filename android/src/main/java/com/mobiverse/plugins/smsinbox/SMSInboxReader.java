@@ -3,8 +3,11 @@ package com.mobiverse.plugins.smsinbox;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
+import android.net.Uri;
 import android.provider.Telephony;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SMSInboxReader {
 
@@ -29,15 +32,12 @@ public class SMSInboxReader {
 
     public ArrayList<SMSObject> getSMSList(GetSMSProjectionInput projectionInput, GetSMSFilterInput filterInput) {
         String[] projection = projectionInput.getProjection();
+        String selection = filterInput.getSelection();
+        String[] selectionArgs = filterInput.getSelectionArgs();
+        String sortOrder = filterInput.getSortOrder();
 
         ContentResolver cr = this.mActivity.getContentResolver();
-        Cursor cursor = cr.query(
-            filterInput.getContentUri(),
-            projection,
-            filterInput.getSelection(),
-            filterInput.getSelectionArgs(),
-            Telephony.Sms.DEFAULT_SORT_ORDER
-        );
+        Cursor cursor = cr.query(filterInput.getContentUri(), projection, selection, selectionArgs, sortOrder);
 
         ArrayList<SMSObject> smsList = new ArrayList<>();
         if (cursor != null && cursor.getCount() > 0) {
@@ -50,7 +50,6 @@ public class SMSInboxReader {
                 }
             }
             cursor.close();
-            return smsList;
         }
 
         if (cursor != null) {

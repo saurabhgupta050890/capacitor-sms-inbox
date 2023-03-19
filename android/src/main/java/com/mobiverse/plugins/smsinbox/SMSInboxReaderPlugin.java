@@ -56,7 +56,7 @@ public class SMSInboxReaderPlugin extends Plugin {
         if (!isSMSPermissionGranted()) {
             requestSMSPermission(call);
         } else {
-            JSObject filters = call.getObject("filter");
+            JSObject filters = call.getObject("filter", new JSObject());
             Integer count = implementation.getCount();
             JSObject ret = new JSObject();
             ret.put("count", count);
@@ -69,10 +69,16 @@ public class SMSInboxReaderPlugin extends Plugin {
         if (!isSMSPermissionGranted()) {
             requestSMSPermission(call);
         } else {
-            GetSMSProjectionInput projection = new GetSMSProjectionInput(call.getObject("projection"));
-            GetSMSFilterInput filter = new GetSMSFilterInput(call.getObject("filter"));
+            GetSMSProjectionInput projection = new GetSMSProjectionInput(call.getObject("projection", new JSObject()));
+            GetSMSFilterInput filter = new GetSMSFilterInput(call.getObject("filter", new JSObject()));
+
             ArrayList<SMSObject> smsListObj = implementation.getSMSList(projection, filter);
-            JSONArray smsList = new JSONArray(smsListObj);
+
+            JSONArray smsList = new JSONArray();
+            for (SMSObject sms : smsListObj) {
+                smsList.put(sms.getJSONObject());
+            }
+
             JSObject ret = new JSObject();
             ret.put("smsList", smsList);
             call.resolve(ret);

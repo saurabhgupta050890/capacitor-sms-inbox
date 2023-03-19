@@ -16,7 +16,6 @@ public class GetSMSProjectionInput {
     private final boolean dateSent;
     private final boolean subject;
     private final boolean body;
-    private final boolean spamReport;
 
     GetSMSProjectionInput(JSObject fromJSONObject) {
         this.id = fromJSONObject.optBoolean("id", true);
@@ -28,7 +27,6 @@ public class GetSMSProjectionInput {
         this.dateSent = fromJSONObject.optBoolean("dateSent", false);
         this.subject = fromJSONObject.optBoolean("subject", true);
         this.body = fromJSONObject.optBoolean("body", true);
-        this.spamReport = fromJSONObject.optBoolean("spamReport", false);
     }
 
     public String[] getProjection() {
@@ -61,9 +59,6 @@ public class GetSMSProjectionInput {
         }
         if (this.body) {
             projection.add(TextBasedSmsColumns.BODY);
-        }
-        if (this.spamReport) {
-            projection.add("spam_report");
         }
 
         return projection.toArray(new String[projection.size()]);

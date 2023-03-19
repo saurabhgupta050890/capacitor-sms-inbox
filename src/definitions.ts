@@ -25,60 +25,55 @@ export interface SMSObject {
   dateSent: number;
   subject: string;
   body: string;
-  spamReport: number;
 }
 
 export interface Projection {
   /**
    * @default true
    */
-  id: boolean;
+  id?: boolean;
   /**
    * @default true
    */
-  threadId: boolean;
+  threadId?: boolean;
   /**
    * @default true
    */
-  type: boolean;
+  type?: boolean;
   /**
    * @default true
    */
-  address: boolean;
+  address?: boolean;
   /**
    * @default false
    */
-  creator: boolean;
+  creator?: boolean;
   /**
    * @default false
    */
-  person: boolean;
+  person?: boolean;
   /**
    * @default true
    */
-  date: boolean;
+  date?: boolean;
   /**
    * @default false
    */
-  dateSent: boolean;
+  dateSent?: boolean;
   /**
    * @default true
    */
-  subject: boolean;
+  subject?: boolean;
   /**
    * @default true
    */
-  body: boolean;
-  /**
-   * @default false
-   */
-  spamReport: boolean;
+  body?: boolean;
 }
 export interface SMSFilter {
   /**
    * @default MessageType.INBOX
    */
-  type: MessageType;
+  type?: MessageType;
   id?: number;
   threadId?: number;
   body?: string;
@@ -93,6 +88,9 @@ export interface SMSFilter {
 export interface SMSInboxReaderPlugin {
   checkPermissions(): Promise<PermissionStatus>;
   requestPermissions(): Promise<PermissionStatus>;
-  getCount(filter?: SMSFilter): Promise<{count: number}>;
-  getSMSList(projection?: Projection, filter?: SMSFilter): Promise<{smsList: SMSObject[]}>;
+  getCount(options: { filter?: SMSFilter }): Promise<{ count: number }>;
+  getSMSList(options: {
+    projection?: Projection;
+    filter?: SMSFilter;
+  }): Promise<{ smsList: SMSObject[] }>;
 }

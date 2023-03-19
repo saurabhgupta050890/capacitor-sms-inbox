@@ -51,12 +51,12 @@ requestPermissions() => Promise<PermissionStatus>
 ### getCount(...)
 
 ```typescript
-getCount(filter?: SMSFilter | undefined) => Promise<{ count: number; }>
+getCount(options: { filter?: SMSFilter; }) => Promise<{ count: number; }>
 ```
 
-| Param        | Type                                            |
-| ------------ | ----------------------------------------------- |
-| **`filter`** | <code><a href="#smsfilter">SMSFilter</a></code> |
+| Param         | Type                                                          |
+| ------------- | ------------------------------------------------------------- |
+| **`options`** | <code>{ filter?: <a href="#smsfilter">SMSFilter</a>; }</code> |
 
 **Returns:** <code>Promise&lt;{ count: number; }&gt;</code>
 
@@ -66,13 +66,12 @@ getCount(filter?: SMSFilter | undefined) => Promise<{ count: number; }>
 ### getSMSList(...)
 
 ```typescript
-getSMSList(projection?: Projection | undefined, filter?: SMSFilter | undefined) => Promise<{ smsList: SMSObject[]; }>
+getSMSList(options: { projection?: Projection; filter?: SMSFilter; }) => Promise<{ smsList: SMSObject[]; }>
 ```
 
-| Param            | Type                                              |
-| ---------------- | ------------------------------------------------- |
-| **`projection`** | <code><a href="#projection">Projection</a></code> |
-| **`filter`**     | <code><a href="#smsfilter">SMSFilter</a></code>   |
+| Param         | Type                                                                                                             |
+| ------------- | ---------------------------------------------------------------------------------------------------------------- |
+| **`options`** | <code>{ projection?: <a href="#projection">Projection</a>; filter?: <a href="#smsfilter">SMSFilter</a>; }</code> |
 
 **Returns:** <code>Promise&lt;{ smsList: SMSObject[]; }&gt;</code>
 

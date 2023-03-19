@@ -6,6 +6,7 @@ import android.provider.Telephony;
 import com.getcapacitor.JSObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class GetSMSFilterInput {
 
@@ -21,6 +22,8 @@ public class GetSMSFilterInput {
     private final String indexFrom;
     private final String maxCount;
     private final ArrayList<String> selectionArgs;
+    private String selection;
+    private final StringBuilder sortOrder;
 
     GetSMSFilterInput(JSObject fromJSONObject) {
         this.id = fromJSONObject.optString("id", null);
@@ -35,6 +38,8 @@ public class GetSMSFilterInput {
         this.body = fromJSONObject.optString("body", null);
         this.maxCount = fromJSONObject.optString("maxCount", null);
         this.selectionArgs = new ArrayList<>();
+        this.sortOrder = new StringBuilder(Telephony.Sms.DEFAULT_SORT_ORDER);
+        prepareSelection();
     }
 
     public Uri getContentUri() {
@@ -52,56 +57,71 @@ public class GetSMSFilterInput {
         }
     }
 
-    public String getSelection() {
-        StringBuilder selection = new StringBuilder("");
+    private void prepareSelection() {
+        ArrayList<String> selection = new ArrayList<>();
 
         if(this.id != null) {
-            selection.append(BaseColumns._ID + "=?");
+            selection.add(BaseColumns._ID + " = ?");
             selectionArgs.add(this.id);
         }
 
         if (this.threadId != null) {
-            selection.append(" AND " + Telephony.TextBasedSmsColumns.THREAD_ID + "= ?");
+            selection.add(Telephony.TextBasedSmsColumns.THREAD_ID + " = ?");
             selectionArgs.add(this.threadId);
         }
 
         if (this.address != null) {
-            selection.append(" AND " + Telephony.TextBasedSmsColumns.ADDRESS + "= ?");
+            selection.add(Telephony.TextBasedSmsColumns.ADDRESS + " = ?");
             selectionArgs.add(this.address.trim());
         }
 
         if (this.body != null) {
-            selection.append(" AND " + Telephony.TextBasedSmsColumns.BODY + "= ?");
+            selection.add(Telephony.TextBasedSmsColumns.BODY + " = ?");
             selectionArgs.add(this.body.trim());
         }
 
         if (minDate != null) {
-            selection.append(" AND " + Telephony.TextBasedSmsColumns.DATE + ">= ?");
+            selection.add(Telephony.TextBasedSmsColumns.DATE + ">= ?");
             selectionArgs.add(minDate);
         }
 
         if (maxDate != null) {
-            selection.append(" AND " + Telephony.TextBasedSmsColumns.DATE + "<= ?");
+            selection.add(Telephony.TextBasedSmsColumns.DATE + " <= ?");
             selectionArgs.add(maxDate);
         }
 
         if (indexFrom != null && maxCount != null) {
-            selection.append(" LIMIT ?, ?");
+            this.sortOrder.append(" LIMIT ? ?");
             selectionArgs.add(indexFrom);
             selectionArgs.add(maxCount);
         } else if (maxCount != null) {
-            selection.append(" LIMIT ?");
+            this.sortOrder.append(" LIMIT ?");
             selectionArgs.add(maxCount);
         } else if (indexFrom != null) {
-            selection.append(" LIMIT -1 OFFSET ?");
+            this.sortOrder.append(" LIMIT -1 OFFSET ?");
             selectionArgs.add(indexFrom);
         }
 
-        return selection.toString();
+        if (selection.size() == 0) {
+            this.selection = null;
+        } else {
+            this.selection = String.join(" AND ", selection);
+        }
     }
 
-    public  String[] getSelectionArgs() {
+    public String getSelection() {
+        return selection;
+    }
+
+    public String[] getSelectionArgs() {
+        if (this.selectionArgs.size() == 0) {
+            return null;
+        }
         return this.selectionArgs.toArray(new String[this.selectionArgs.size()]);
+    }
+
+    public String getSortOrder() {
+        return this.sortOrder.toString();
     }
 
     public boolean isBodyMatch(SMSObject sms) {
@@ -116,5 +136,23 @@ public class GetSMSFilterInput {
             return sms.getAddress().matches(this.addressRegex);
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "GetSMSFilterInput{" +
+                "id='" + id + '\'' +
+                ", type=" + type +
+                ", threadId='" + threadId + '\'' +
+                ", body='" + body + '\'' +
+                ", bodyRegex='" + bodyRegex + '\'' +
+                ", address='" + address + '\'' +
+                ", addressRegex='" + addressRegex + '\'' +
+                ", minDate='" + minDate + '\'' +
+                ", maxDate='" + maxDate + '\'' +
+                ", indexFrom='" + indexFrom + '\'' +
+                ", maxCount='" + maxCount + '\'' +
+                ", selectionArgs=" + selectionArgs +
+                '}';
     }
 }
