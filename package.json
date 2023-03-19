@@ -17,10 +17,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/saurabhgupta050890/capacitor-sma-inbox.git"
+    "url": "git+https://github.com/saurabhgupta050890/capacitor-sms-inbox.git"
   },
   "bugs": {
-    "url": "https://github.com/saurabhgupta050890/capacitor-sma-inbox/issues"
+    "url": "https://github.com/saurabhgupta050890/capacitor-sms-inbox/issues"
   },
   "keywords": [
     "capacitor",
