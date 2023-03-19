@@ -97,32 +97,32 @@ export interface SMSInboxReaderPlugin {
   /**
    * Returns a raw sms object (all columns). Its like running SELECT * FROM ..
    * 
-   * E.g. 
-   * 
+   * E.g.
+   * ```json
    * {
-       _id: 33
-       thread_id: 153
-       address: 'TEST'
-       person: null
-       date: 1679232404568
-       date_sent: 1679562604000
-       protocol: 0
-       read: 0
-       status: -1
-       type: 1
-       reply_path_present: 0
-       subject: null
-       body: 'SMS body'
-       service_center: '+918299901123'
-       locked: 0
-       sub_id: 1
-       error_code: 0
-       creator: 'com.google.android.apps.messaging'
-       seen: 1
-       priority: -1
+       "_id": 33,
+       "thread_id": 153,
+       "address": "TEST",
+       "person": null,
+       "date": 1679232404564,
+       "date_sent": 1679562604444,
+       "protocol": 0,
+       "read": 0,
+       "status": -1,
+       "type": 1,
+       "reply_path_present": 0,
+       "subject": null,
+       "body": "SMS body",
+       "service_center": "+918299901123",
+       "locked": 0,
+       "sub_id": 1,
+       "error_code": 0,
+       "creator": "com.google.android.apps.messaging",
+       "seen": 1,
+       "priority": -1
     }
-
-    Note: This is a raw query and ineffecient. Use with caution
+    ```
+   * **Note: This is a raw query and ineffecient. Use with caution**
    * @param options 
    */
   getRawSMSList(options: { filter?: SMSFilter }): Promise<{ rawSmsList: any }>;
