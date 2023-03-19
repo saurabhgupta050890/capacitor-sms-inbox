@@ -48,6 +48,24 @@ public class SMSInboxReaderPlugin extends Plugin {
             case "getSMSList":
                 getSMSList(call);
                 break;
+            case "getRawSMSList":
+                getRawSMSList(call);
+                break;
+        }
+    }
+
+    @PluginMethod
+    public void getRawSMSList(PluginCall call) {
+        if (!isSMSPermissionGranted()) {
+            requestSMSPermission(call);
+        } else {
+            GetSMSFilterInput filter = new GetSMSFilterInput(call.getObject("filter", new JSObject()));
+
+            JSONArray rawSMSList = implementation.getRawSMSList(filter);
+
+            JSObject ret = new JSObject();
+            ret.put("rawSmsList", rawSMSList);
+            call.resolve(ret);
         }
     }
 

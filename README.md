@@ -17,6 +17,7 @@ npx cap sync android
 * [`requestPermissions()`](#requestpermissions)
 * [`getCount(...)`](#getcount)
 * [`getSMSList(...)`](#getsmslist)
+* [`getRawSMSList(...)`](#getrawsmslist)
 * [Interfaces](#interfaces)
 * [Type Aliases](#type-aliases)
 * [Enums](#enums)
@@ -74,6 +75,50 @@ getSMSList(options: { projection?: Projection; filter?: SMSFilter; }) => Promise
 | **`options`** | <code>{ projection?: <a href="#projection">Projection</a>; filter?: <a href="#smsfilter">SMSFilter</a>; }</code> |
 
 **Returns:** <code>Promise&lt;{ smsList: SMSObject[]; }&gt;</code>
+
+--------------------
+
+
+### getRawSMSList(...)
+
+```typescript
+getRawSMSList(options: { filter?: SMSFilter; }) => Promise<{ rawSmsList: any; }>
+```
+
+Returns a raw sms object (all columns). Its like running SELECT * FROM ..
+
+E.g. 
+
+{
+  _id: 33
+  thread_id: 153
+  address: 'TEST'
+  person: null
+  date: 1679232404568
+  date_sent: 1679562604000
+  protocol: 0
+  read: 0
+  status: -1
+  type: 1
+  reply_path_present: 0
+  subject: null
+  body: 'SMS body'
+  service_center: '+918299901123'
+  locked: 0
+  sub_id: 1
+  error_code: 0
+  creator: 'com.google.android.apps.messaging'
+  seen: 1
+  priority: -1
+}
+
+Note: This is a raw query and ineffecient. Use with caution
+
+| Param         | Type                                                          |
+| ------------- | ------------------------------------------------------------- |
+| **`options`** | <code>{ filter?: <a href="#smsfilter">SMSFilter</a>; }</code> |
+
+**Returns:** <code>Promise&lt;{ rawSmsList: any; }&gt;</code>
 
 --------------------
 

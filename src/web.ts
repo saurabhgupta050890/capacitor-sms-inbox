@@ -12,6 +12,11 @@ export class SMSInboxReaderWeb
   extends WebPlugin
   implements SMSInboxReaderPlugin
 {
+  getRawSMSList(_options: {
+    filter?: SMSFilter | undefined;
+  }): Promise<{ rawSmsList: any }> {
+    throw new Error('Method not implemented.');
+  }
   getCount(_options: { filter: SMSFilter }): Promise<{ count: number }> {
     throw new Error('Method not implemented.');
   }
