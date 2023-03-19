@@ -61,7 +61,6 @@ public class SMSObject {
         return body;
     }
 
-
     private String getStringByColumnName(Cursor cursor, String columnName) {
         int index = cursor.getColumnIndex(columnName);
         if (index >= 0) {
@@ -116,17 +115,39 @@ public class SMSObject {
 
     @Override
     public String toString() {
-        return "SMSObject{" +
-                "smsId='" + smsId + '\'' +
-                ", threadId='" + threadId + '\'' +
-                ", type='" + type + '\'' +
-                ", address='" + address + '\'' +
-                ", creator='" + creator + '\'' +
-                ", person='" + person + '\'' +
-                ", date='" + date + '\'' +
-                ", dateSent='" + dateSent + '\'' +
-                ", subject='" + subject + '\'' +
-                ", body='" + body + '\'' +
-                '}';
+        return (
+            "SMSObject{" +
+            "smsId='" +
+            smsId +
+            '\'' +
+            ", threadId='" +
+            threadId +
+            '\'' +
+            ", type='" +
+            type +
+            '\'' +
+            ", address='" +
+            address +
+            '\'' +
+            ", creator='" +
+            creator +
+            '\'' +
+            ", person='" +
+            person +
+            '\'' +
+            ", date='" +
+            date +
+            '\'' +
+            ", dateSent='" +
+            dateSent +
+            '\'' +
+            ", subject='" +
+            subject +
+            '\'' +
+            ", body='" +
+            body +
+            '\'' +
+            '}'
+        );
     }
 }

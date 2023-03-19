@@ -4,7 +4,6 @@ import android.net.Uri;
 import android.provider.BaseColumns;
 import android.provider.Telephony;
 import com.getcapacitor.JSObject;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -60,7 +59,7 @@ public class GetSMSFilterInput {
     private void prepareSelection() {
         ArrayList<String> selection = new ArrayList<>();
 
-        if(this.id != null) {
+        if (this.id != null) {
             selection.add(BaseColumns._ID + " = ?");
             selectionArgs.add(this.id);
         }
@@ -140,19 +139,43 @@ public class GetSMSFilterInput {
 
     @Override
     public String toString() {
-        return "GetSMSFilterInput{" +
-                "id='" + id + '\'' +
-                ", type=" + type +
-                ", threadId='" + threadId + '\'' +
-                ", body='" + body + '\'' +
-                ", bodyRegex='" + bodyRegex + '\'' +
-                ", address='" + address + '\'' +
-                ", addressRegex='" + addressRegex + '\'' +
-                ", minDate='" + minDate + '\'' +
-                ", maxDate='" + maxDate + '\'' +
-                ", indexFrom='" + indexFrom + '\'' +
-                ", maxCount='" + maxCount + '\'' +
-                ", selectionArgs=" + selectionArgs +
-                '}';
+        return (
+            "GetSMSFilterInput{" +
+            "id='" +
+            id +
+            '\'' +
+            ", type=" +
+            type +
+            ", threadId='" +
+            threadId +
+            '\'' +
+            ", body='" +
+            body +
+            '\'' +
+            ", bodyRegex='" +
+            bodyRegex +
+            '\'' +
+            ", address='" +
+            address +
+            '\'' +
+            ", addressRegex='" +
+            addressRegex +
+            '\'' +
+            ", minDate='" +
+            minDate +
+            '\'' +
+            ", maxDate='" +
+            maxDate +
+            '\'' +
+            ", indexFrom='" +
+            indexFrom +
+            '\'' +
+            ", maxCount='" +
+            maxCount +
+            '\'' +
+            ", selectionArgs=" +
+            selectionArgs +
+            '}'
+        );
     }
 }

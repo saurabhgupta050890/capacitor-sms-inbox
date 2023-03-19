@@ -107,36 +107,34 @@ getSMSList(options: { projection?: Projection; filter?: SMSFilter; }) => Promise
 
 #### SMSObject
 
-| Prop             | Type                                                |
-| ---------------- | --------------------------------------------------- |
-| **`id`**         | <code>number</code>                                 |
-| **`threadId`**   | <code>number</code>                                 |
-| **`type`**       | <code><a href="#messagetype">MessageType</a></code> |
-| **`address`**    | <code>string</code>                                 |
-| **`creator`**    | <code>string</code>                                 |
-| **`person`**     | <code>string</code>                                 |
-| **`date`**       | <code>number</code>                                 |
-| **`dateSent`**   | <code>number</code>                                 |
-| **`subject`**    | <code>string</code>                                 |
-| **`body`**       | <code>string</code>                                 |
-| **`spamReport`** | <code>number</code>                                 |
+| Prop           | Type                                                |
+| -------------- | --------------------------------------------------- |
+| **`id`**       | <code>number</code>                                 |
+| **`threadId`** | <code>number</code>                                 |
+| **`type`**     | <code><a href="#messagetype">MessageType</a></code> |
+| **`address`**  | <code>string</code>                                 |
+| **`creator`**  | <code>string</code>                                 |
+| **`person`**   | <code>string</code>                                 |
+| **`date`**     | <code>number</code>                                 |
+| **`dateSent`** | <code>number</code>                                 |
+| **`subject`**  | <code>string</code>                                 |
+| **`body`**     | <code>string</code>                                 |
 
 
 #### Projection
 
-| Prop             | Type                 | Default            |
-| ---------------- | -------------------- | ------------------ |
-| **`id`**         | <code>boolean</code> | <code>true</code>  |
-| **`threadId`**   | <code>boolean</code> | <code>true</code>  |
-| **`type`**       | <code>boolean</code> | <code>true</code>  |
-| **`address`**    | <code>boolean</code> | <code>true</code>  |
-| **`creator`**    | <code>boolean</code> | <code>false</code> |
-| **`person`**     | <code>boolean</code> | <code>false</code> |
-| **`date`**       | <code>boolean</code> | <code>true</code>  |
-| **`dateSent`**   | <code>boolean</code> | <code>false</code> |
-| **`subject`**    | <code>boolean</code> | <code>true</code>  |
-| **`body`**       | <code>boolean</code> | <code>true</code>  |
-| **`spamReport`** | <code>boolean</code> | <code>false</code> |
+| Prop           | Type                 | Default            |
+| -------------- | -------------------- | ------------------ |
+| **`id`**       | <code>boolean</code> | <code>true</code>  |
+| **`threadId`** | <code>boolean</code> | <code>true</code>  |
+| **`type`**     | <code>boolean</code> | <code>true</code>  |
+| **`address`**  | <code>boolean</code> | <code>true</code>  |
+| **`creator`**  | <code>boolean</code> | <code>false</code> |
+| **`person`**   | <code>boolean</code> | <code>false</code> |
+| **`date`**     | <code>boolean</code> | <code>true</code>  |
+| **`dateSent`** | <code>boolean</code> | <code>false</code> |
+| **`subject`**  | <code>boolean</code> | <code>true</code>  |
+| **`body`**     | <code>boolean</code> | <code>true</code>  |
 
 
 ### Type Aliases
